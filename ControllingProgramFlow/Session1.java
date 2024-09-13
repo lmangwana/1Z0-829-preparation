@@ -2,7 +2,31 @@ package day11.ControllingProgramFlow;
 
 public class Session1 {
 	
-	public void q1() {}
+	public void q1() 
+	{
+		/*
+		 * Which statements are true of the following code? (Choose two.)
+			public class Penguins {
+			    public static void main(String[] args) {
+			       var pen = new Penguins();
+			       pen.length("penguins");
+			       pen.length(5);
+			       pen.length(new Object());
+			   }
+			   public void length(Object obj) {
+			     if (obj instanceof String x) 
+			        System.out.println(x.length());
+			   } }
+			   
+			   
+			The code compiles as is.
+			One line causes compiler errors.
+			Two lines cause compiler errors.
+			If any lines that do not compile are removed, this code does not print anything.
+			If any lines that do not compile are removed, this code prints one line.
+			If any lines that do not compile are removed, this code prints two lines.
+		 */
+	}
 	public void q2() {}
 	public void q3() {}
 	public void q4() {}
