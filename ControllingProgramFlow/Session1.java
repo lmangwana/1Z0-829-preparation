@@ -45,7 +45,11 @@ public class Session1 {
 		 * Just to have untracked changes
 		 */
 	}
-	public void q4() {}
+	public void q4() {
+		/*
+		 * Another change here
+		 */
+	}
 	public void q5() {}
 	public void q6() {}
 	public void q7() {}
