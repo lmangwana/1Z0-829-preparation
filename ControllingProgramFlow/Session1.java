@@ -50,7 +50,11 @@ public class Session1 {
 		 * Another change here
 		 */
 	}
-	public void q5() {}
+	public void q5() {
+		/*
+		 * hello
+		 */
+	}
 	public void q6() {}
 	public void q7() {}
 	public void q8() {}
