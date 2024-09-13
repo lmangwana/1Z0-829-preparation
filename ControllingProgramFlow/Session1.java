@@ -27,7 +27,18 @@ public class Session1 {
 			If any lines that do not compile are removed, this code prints two lines.
 		 */
 	}
-	public void q2() {}
+	public void q2() 
+	{
+		/*
+		 * Variables declared as which of the following are never permitted in a switch statement? (Choose two.)
+			var
+			double
+			int
+			String
+			char
+			Object
+		 */
+	}
 	public void q3() {}
 	public void q4() {}
 	public void q5() {}
