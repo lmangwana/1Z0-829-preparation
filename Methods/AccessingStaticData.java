@@ -214,7 +214,7 @@ public class AccessingStaticData
 	 	-> Constants use the modifier static final and a different naming convention than other variables.
 	 	-> They use all uppercase letters with underscores between “words.”
 	 	
-	 	e.g. 
+	 	EXAMPLE 1:
 	 	public class ZooPen {
 		   private static final int NUM_BUCKETS = 45;
 		   public static void main(String[] args) {
@@ -225,7 +225,8 @@ public class AccessingStaticData
 		ATTRIBUTES:
 		-> The compiler will make sure that you do not accidentally try to update a final variable. 
 		-> This can get interesting. Do you think the following compiles?
-		Example: 
+		
+		EXAMPLE 2: 
 		import java.util.*;
 		public class ZooInventoryManager {
 		   private static final String[] treats = new String[10];
@@ -249,28 +250,47 @@ public class AccessingStaticData
 	 */
 	
 	public int forEachObject;
-	public static int count;
+	public static int onlyStatic; 
+	public static int count=1;
 	public static final int new_Count;
+	public static final int[] array_Count;
 	public static final int myCount;
 	
 	public  AccessingStaticData()
 	{
-		count++;
+		System.out.println("***CONSTRUCTOR***"+"\n count="+count);
+		count++; // is a static variable so can be initialized in a constructor, a simple initializer or static initializer
 		forEachObject++;
 		//new_Count++; // Will not compile, cannot initialize in a constructor only in a static intializer 
 		//myCount=1; // DOES not compile, cannot initialize in a constructor only in a static intializer 
 	}
 	
 	{
+		System.out.println("***INSTANCE INITIALIZER***"+"\n count="+count);
+		forEachObject++;
 		//new_Count=1; // Will not compile because it is a not a static initializer
 	}
 	
 	static
 	{
+		System.out.println("***STATIC INITIALIZER 1***"+"\n count="+count);
+		//forEachObject++; // DOES NOT COMPILE, Cannot make a static reference to a non static object
+		count++; // Compiles because you're making a static call to a static object
 		new_Count=1; //Compiles because its a static initializer and not a instance initializer
 		myCount = 1; //Compiles because its a static initializer and not a instance initializer
 	}
 	
+	static
+	{
+		System.out.println("***STATIC INITIALIZER 2***"+"\n count="+count);
+		array_Count = new int[0]; // Can be initialized only in a static initializer
+		//new_Count=1; //Compiles because its a static initializer and not a instance initializer
+		//myCount = 1; //Compiles because its a static initializer and not a instance initializer
+	}
+	
+	
+	
+
 	/*
 	 * 5. static Initializers
 		
@@ -278,14 +298,129 @@ public class AccessingStaticData
 		-> static initializers look similar. 
 		-> They add the static keyword to specify that they should be run when the class is first loaded.
 		
+		ATTRIBUTES:
+		-> Static initializers run before all normal intializers and constructors but before all fields. Run below main method
 		
+		EXAMPLE 3: 
+		14: private static int one;
+		15: private static final int two;
+		16: private static final int three = 3;
+		17: private static final int four;    // DOES NOT COMPILE
+		18: 
+			static {
+		19:    one = 1;
+		20:    two = 2;
+		21:    three = 3;                     // DOES NOT COMPILE, because we are reassigning
+		22:    two = 4;                       // DOES NOT COMPILE, because we are reassigning
+		23: }
+		
+		Notes:
+		-> Line 14 declares a static variable that is not final.
+		-> It can be assigned as many times as we like. Line 15 declares a final variable without initializing it. 
+		-> This means we can initialize it exactly once in a static block. 
+		-> Line 22 doesn't compile because this is the second attempt. 
+		-> Line 16 declares a final variable and initializes it at the same time. ***VERY IMPORTANT
+		-> We are not allowed to assign it again, so line 21 doesn't compile. 
+		-> Line 17 declares a final variable that never gets initialized. 
+		-> The compiler gives a compiler error because it knows that the static blocks are the only place the variable could possibly be initialized.
+		-> Since the programmer forgot, this is clearly an error.
+		
+		Final note: TRY TO AVOID STATIC AND INSTANCE INITIALIZERS
+		-> Using static and instance initializers can make your code much harder to read. 
+		-> Everything that could be done in an instance initializer could be done in a constructor instead.
+		-> Many people find the constructor approach easier to read.
+
+		-> There is a common case to use a static initializer: when you need to initialize a static field and the code to do so requires more than one line. 
+		-> This often occurs when you want to initialize a collection like an ArrayList or a HashMap.
+		-> When you do need to use a static initializer, put all the static initialization in the same block. 
+		-> That way, the order is obvious.
 	 */
+	
+	/*
+	 * 6. static Imports
+	 	
+	 	ATTRIBUTES:
+	 	-> In Chapter 1, you saw that you can import a specific class or all the classes in a package.
+	 	import java.util.ArrayList;
+		import java.util.*;
+		
+		-> We could use this technique to import two classes:
+		import java.util.List;
+		import java.util.Arrays;
+		public class Imports {
+		   public static void main(String[] args) {
+		      List<String> list = Arrays.asList("one", "two");
+		   }
+		}
+		
+		-> Imports are convenient because you don't need to specify where each class comes from each time you use it. 
+		-> There is another type of import called a static import. 
+		-> Regular imports are for importing classes, while static imports are for importing static members of classes 
+			like variables and methods.
+		-> You can use a wild card or import a specific member. 
+		-> The aim is to do away with specifying where each member comes from each time.
+		
+		EXAMPLE 1:
+		import java.util.List;
+		import static java.util.Arrays.asList;          // static import
+		public class ZooParking {
+		   public static void main(String[] args) {
+		      List<String> list = asList("one", "two"); // No Arrays. prefix
+		   }
+		}
+		
+		Notes:
+		-> In this example, we are specifically importing the asList method. (a static member of Arrays class)
+		-> This means that any time we refer to asList in the class, it will call Arrays.asList().
+		
+		EXAM TRICK:
+		-> An interesting case is what would happen if we created an asList method in our ZooParking class. 
+		-> Java would give it preference over the imported one, and the method we coded would be used.
+		
+		EXAMPLE 2: 
+		-> The exam will try to trick you by misusing static imports.
+		-> This example shows almost everything you can do wrong. Can you figure out what is wrong with each one?
+		
+		1: import static java.util.Arrays;       // DOES NOT COMPILE
+		2: import static java.util.Arrays.asList;
+		3: static import java.util.Arrays.*;     // DOES NOT COMPILE
+		4: public class BadZooParking {
+		5:    public static void main(String[] args) {
+		6:       Arrays.asList("one");           // DOES NOT COMPILE
+		7:    }
+		8: }
+		
+		Explanation:
+		-> Line 1: static imports are legal only for static members of the class, Arrays is a class and not a member.
+			Remember that static imports are only for importing static members like a method or variable.
+			Regular imports are for importing a class. 
+		-> Line 2 is a valid use of a static import
+		-> Line 3: reverses the order of syntax. The wild card will get all static members if it were used correctly
+		-> Line 6: parameter list expects, array arguments to passed in. NO!!!!!!
+		-> Line 6 is sneaky. The asList method is imported on line 2. However, the Arrays class is not imported anywhere. 
+			This makes it okay to write asList("one") but not Arrays.asList("one").
+		
+		LAST TRICK:
+		-> The compiler will complain if you try to explicitly do a static import of two methods with the SAME NAME
+		 	or two static variables with the SAME NAME. 
+		 	
+		 	Here's an example:
+		 	import static zoo.A.TYPE;
+			import static zoo.B.TYPE;     // DOES NOT COMPILE
+		
+		-> Luckily, when this happens, we can just refer to the static members via their class name in the code instead
+		 	of trying to use a static import.
+	 */
+	
 
 	public static void main(String[] args) {
 		
 		AccessingStaticData obj1 = new AccessingStaticData();
 		AccessingStaticData obj2 = new AccessingStaticData();
 		AccessingStaticData obj3 = new AccessingStaticData();
+		//new_Count++; // Does not compile because we are trying to reassign a final variable
+		array_Count[0] = 5; // Will compile since we're only modifying its contents and not reassigning the reference variable another reference value.
+							// But run-time error of ArrayIndexOutOfBounds
 		
 		System.out.println("obj1) instance variable forEach value: "+obj1.forEachObject+", static variable count value: "+obj1.count);
 		System.out.println("obj2) instance variable forEach value:: "+obj2.forEachObject+", static variable count value: "+obj2.count);
