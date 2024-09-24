@@ -299,7 +299,7 @@ public class AccessingStaticData
 		-> They add the static keyword to specify that they should be run when the class is first loaded.
 		
 		ATTRIBUTES:
-		-> Static initializers run before all normal intializers and constructors but before all fields. Run below main method
+		-> Static initializers run before all instance intializers and constructors but before all fields. Run below main method
 		
 		EXAMPLE 3: 
 		14: private static int one;
