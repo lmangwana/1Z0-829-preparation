@@ -84,7 +84,7 @@ public class DeclaringLocalandInstanceVariables {
 	 * 2. Effectively Final Variables
 	 * -> An effectively final local variable is one that is not modified after it is assigned.
 	 * -> This means that the value of a variable doesn't change after it is set, 
-	 * 		regardless of whether it is explicitly marked as final.
+	 * 		REGARDLESS of whether it is explicitly marked as final. (VERY IMPORTANT NOTE)
 	 *
 	 	Example code: Given this definition, which of the following variables are effectively final?
 		

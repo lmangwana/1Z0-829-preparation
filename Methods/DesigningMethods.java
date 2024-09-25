@@ -1,7 +1,40 @@
 package day12.Chapter5.Methods;
 
-public class MethodDeclaration {
-
+public class DesigningMethods {
+	
+	/*
+	 * INTRODUCTION
+	 * 
+	 	1. The aim here is to explore methods in depth touching on:
+	 		i) modifiers
+	 		ii) arguments
+	 		iii) varargs
+	 		iv) overloading
+	 		v) autoboxing
+	 	
+	 	2. Method Declaration
+	 		i) This is called a method declaration, which specifies all the information needed to call the method.
+	 		ii) Two of the parts—the method name and parameter list—are called the method signature. 
+	 		The method signature provides instructions for how callers can reference this method. 
+	 		The method signature does not include the return type and access modifiers
+	 		
+	 		***Table 5.1 is a brief reference to the elements of a method declaration.***
+	 		Element				Value in nap() example			Required?
+			Access modifier		public							No
+			Optional specifier	final							No
+			Return type			void							Yes
+			Method name			nap								Yes
+			Parameter list		(int minutes)					Yes, but can be empty parentheses
+			Method signature	nap(int minutes)				Yes
+			Exception list		throws InterruptedException		No
+			Method body			{								Yes, except for abstract methods
+									// take a nap
+								}	
+	 		To call this method, just use the method signature and provide an int value in parentheses:
+	 		-> nap(10);
+	 *
+	 */
+	
 	/*
 	 * 1. ACCESS MODIFIERS (VISIBILITY)
 	 * -> specifies where (class) a method can be accessed from 
