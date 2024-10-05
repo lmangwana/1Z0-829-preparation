@@ -1,5 +1,46 @@
 package day13.Chapter6.ClassDesign;
 
+//Creating Constructors in Abstract Classes
+
+abstract class Mammal {
+	   abstract CharSequence chew();
+	   
+	  static final int zero = 0;
+	   { System.out.println("instance Mammal-super"); } 
+	   static{System.out.println("static Mammal-super");}
+	   
+	   public Mammal() {
+		   System.out.println("line 1 of constructor in Mammal-super");
+	      System.out.println(chew()); // Does this line compile? 
+	   }
+	}
+	 
+	 class Platypus extends Mammal {
+		
+		 
+		 { System.out.println("instance Platypus-child");
+		 
+		} 
+	   static{System.out.println("static Platypus-child");}
+	   String chew() { return "yummy!"; }
+	   
+	  
+	   public static void main(String[] args) {
+		   System.out.println("main Platypus-child");
+	      new Platypus();
+	   }
+	}
+	/*
+	 * OUTPUT
+	 * 	static Mammal-super
+		static Platypus-child
+		main Platypus-child
+		instance Mammal-super
+		line 1 of constructor in Mammal-super
+		yummy!
+		instance Platypus-child
+	 */
+
 public class CreatingAbstractClasses {
 	
 	/*
@@ -203,7 +244,7 @@ public class CreatingAbstractClasses {
 	 */
 	
 	/*
-	 * Creating Constructors in Abstract Classes
+	 * Creating Constructors in Abstract Classes (SEE ABOVE CODE EXAMPLE)
 		
 		-> Even though abstract classes cannot be instantiated, they are still initialized through 
 		constructors by their subclasses.
@@ -221,7 +262,14 @@ public class CreatingAbstractClasses {
 		constructor in an abstract class can be called only when it is being initialized by a non-abstract subclass. 
 		This makes sense, as abstract classes cannot be instantiated.
 		
+		In simpler terms:
+		A constructor in an abstract class cannot be used directly to create an instance of that abstract class. 
+		Instead, it can only be called when a concrete (non-abstract) subclass is instantiated. 
+		This means that the abstract class’s constructor is part of the initialization process of its concrete 
+		subclass.
 	 */
+	
+	
 	
 	/*
 	 * Spotting Invalid Declarations
@@ -323,6 +371,10 @@ public class CreatingAbstractClasses {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		String name = "Luke";
+		String surname = new String("Mangwana");
+		System.out.println("Hello, "+name+" "+surname);
 
 	}
 
