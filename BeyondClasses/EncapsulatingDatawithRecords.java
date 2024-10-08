@@ -416,6 +416,13 @@ public class EncapsulatingDatawithRecords {
 			}
 		-> Records also do not support instance initializers. 
 			All initialization for the fields of a record must happen in a constructor.
+			
+		ADDITIONAL NOTE ***
+		-> Single Inheritance vs. Multiple Inheritance: 
+		Java supports single inheritance for classes (a class can only extend one other class) but 
+		allows multiple inheritance for interfaces (a class or record can implement multiple interfaces). 
+		Since records already extend java.lang.Record, they cannot extend another class, but they can implement 
+		any number of interfaces.
 	 */
 	
 
