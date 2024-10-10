@@ -406,18 +406,18 @@ public class ImplementingInterfaces {
 	
 	TABLE 7.1 Interface member types
 
-						Membership type		Required modifiers		Implicit modifiers		Has value or body?
-	Constant variable		Class					—				public static final			Yes
+					Membership type		Required modifiers		Implicit modifiers		Has value or body?
+	Constant variable		Class			—				public static final			Yes
 	
-	abstract method			Instance				—				public abstract				No
+	abstract method			Instance		—				public abstract				No
 	
-	default method			Instance			default				public						Yes
+	default method			Instance		default				public						Yes
 	
-	static method			Class				static				public						Yes
+	static method			Class			static				public						Yes
 	
-	private method			Instance			private				—							Yes
+	private method			Instance		private				—							Yes
 	
-	private static method	Class				privates static		—							Yes
+	private static method		Class			privates static			—							Yes
 	
 	A method with a membership type of class is shared among all instances of the interface, whereas a method with a 
 	membership type of instance is associated with a particular instance of the interface.
@@ -689,20 +689,20 @@ public class ImplementingInterfaces {
  */
 	
 	/*
-	Reviewing Interface Members
+	REVIEWING INTERFACE MEMBER RULES AND THEIR ACCESS (VERY IMPORTANT!!)
 	 Table 7.2, shows the access rules for members within and outside an interface.
 	 TABLE 7.2 Interface member access
 
-						Accessible from default 		Accessible from 							Accessible from methods in 				Accessible without an 
-						and private methods within  	static methods within the interface?		classes inheriting the interface?		instance of the interface?
-						the interface?								
-							
-	Constant variable		Yes								Yes											Yes									Yes
-	abstract method			Yes								No											Yes									No
-	default method			Yes								No											Yes									No
-	static method			Yes								Yes											Yes (interface name required)		Yes (interface name required)
-	private method			Yes								No											No									No
-	private static method	Yes								Yes											No									No
+				Accessible from default		Accessible from static		Accessible from methods		Accessible without an 
+				and private methods within  	methods within the 		in classes inheriting 		instance of the 
+				the interface?			interface?			the interface?			interface?
+						
+	Constant variable:	Yes				Yes				Yes				Yes
+	abstract method:	Yes				No				Yes				No
+	default method:		Yes				No				Yes				No
+	static method:		Yes				Yes				Yes(interface name required)	Yes(interface name required)
+	private method:		Yes				No				No				No
+	private static method:	Yes				Yes				No				No
 	
 	 Quick tips for the exam:
 		Treat abstract, default, and non-static private methods as belonging to an instance of the interface.

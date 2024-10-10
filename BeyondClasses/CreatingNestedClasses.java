@@ -16,9 +16,9 @@ public class CreatingNestedClasses {
 		Anonymous class: A special case of a local class that does not have a name
 	 	
 	 	NOTE:
-	 	-> By convention, and throughout this chapter, we often use the term nested class to refer to all nested types,
-	 	including nested interfaces, enums, records, and annotations. You might even come across literature that 
-	 	refers to all of them as inner classes. 
+	 	-> By convention, and throughout this chapter, we often use the term nested class to refer to all nested
+   		types, including nested interfaces, enums, records, and annotations. You might even come across literature 
+     		that refers to all of them as inner classes. 
 	 */
 
 	/*
@@ -62,8 +62,8 @@ public class CreatingNestedClasses {
 		21: } }
 				
 				EXPLANATION:
-				-> It's important to notice that line 15 doesn't require an explicit instance of Home because it is an 
-				instance method within Home. 
+				-> It's important to notice that line 15 doesn't require an explicit instance of Home 
+    				because it is an instance method within Home. 
 				-> This works because enterRoom() is an instance method within the Home class. 
 				Both Room and enterRoom() are members of Home.
 	 */
@@ -93,8 +93,8 @@ public class CreatingNestedClasses {
 		}
 	 	
 	 	Note:
-	 	-> We need an instance of Home to create a Room. We can't just call new Room() inside the static main() method,
-	 	because Java won't know which instance of Home it is associated with.
+	 	-> We need an instance of Home to create a Room. We can't just call new Room() inside the static main() 
+   		method, because Java won't know which instance of Home it is associated with.
 	 	
 		-> Instance Methods: Can directly create inner class instances because they are associated with an
 		instance of the outer class.
@@ -307,15 +307,15 @@ public class CreatingNestedClasses {
 		Earlier, we mentioned that the compiler generates a separate .class file for each inner class. 
 		A separate class has no way to refer to a local variable. However, if the local variable is final or 
 		effectively final, Java can handle it by passing a copy of the value or reference variable to the 
-		constructor of the local class. If it weren't final or effectively final, these tricks wouldn't work because 
-		the value could change after the copy was made.
+		constructor of the local class. If it weren't final or effectively final, these tricks wouldn't work 
+  		because the value could change after the copy was made.
 	 */
 	
 	/*
 	 Defining an Anonymous Class (Special LOCAL CLASS)
 		DEFINITION: An anonymous class is a specialized form of a local class that does not have a name.
-		-> It is declared and instantiated all in one statement using the new keyword, a type name with parentheses,
-		 and a set of braces {}.
+		-> It is declared and instantiated all in one statement using the new keyword, a type name with parentheses
+  		, and a set of braces {}.
 		-> Anonymous classes must extend an existing class or implement an existing interface.
 		-> They are useful when you have a short implementation that will not be used anywhere else.
 		
@@ -335,7 +335,8 @@ public class CreatingNestedClasses {
 		-> Lines 2–4 define an abstract class. Lines 6–8 define the anonymous class. 
 		-> Notice how this anonymous class does not have a name. 
 		-> The code says to instantiate a new SaleTodayOnly object. 
-		-> But wait: SaleTodayOnly is abstract. This is okay because we provide the class body right there—anonymously.
+		-> But wait: SaleTodayOnly is abstract. This is okay because we provide the class body right there —
+  		anonymously.
 		-> In this example, writing an anonymous class is equivalent to writing a local class with an unspecified 
 		name that extends SaleTodayOnly and immediately uses it.
 		
@@ -359,8 +360,9 @@ public class CreatingNestedClasses {
 		EXPLANATION:
 		-> interfaces have methods that are implicitly abstract and public @ line 2
 		-> the anonymous class in line 6-8 instantiates the SaleTodayOnly object and overrides the abstract method
-		while specifying that its access is public. This is in keeping with the rules where the implementing class must
-		explicitly declare the access as public else it would be seen as package access which narrows access, illegal.
+		while specifying that its access is public. This is in keeping with the rules where the implementing class 
+  		must explicitly declare the access as public else it would be seen as package access which narrows access, 
+    		illegal.
 		-> Just remember that in this second example, an instance of a class is created on line 6, not an interface.
 		
 		QUESTION: But what if we want to both implement an interface and extend a class? 
@@ -408,10 +410,10 @@ public class CreatingNestedClasses {
 		
 		TABLE 7.4 Modifiers in nested classes
 
-		Permitted modifiers			Inner class		static nested class		Local class		Anonymous class
-		Access modifiers				All				All						None			None
-		abstract						Yes				Yes						Yes				No
-		final							Yes				Yes						Yes				No
+		Permitted modifiers	Inner class	static nested class	Local class	Anonymous class
+		Access modifiers	All		All			None		None
+		abstract		Yes		Yes			Yes		No
+		final			Yes		Yes		 	Yes		No
 		
 		You should also know the information in Table 7.5 about types of access. For example, the exam might try 
 		to trick you by having a static class access an outer class instance variable without a reference to the 
@@ -419,18 +421,18 @@ public class CreatingNestedClasses {
 		
 		TABLE 7.5 Nested class access rules
 
-								Inner class		static nested class		Local class			Anonymous class
-		Can extend a class or 	Yes				Yes						Yes					No—must have exactly 
-		implement any number 																one superclass or one 
-		of interfaces?																		interface
+					Inner class	static nested class	Local class	Anonymous class
+		Can extend a class or 	Yes		Yes			Yes		No—must have exactly 
+		implement any number 								one superclass or one 
+		of interfaces?									interface
 		
-		Can access instance 	Yes				No						Yes(if declared 	Yes (if declared in an 
-		members of enclosing 											in an instance		instance method)
-		class?															method)
+		Can access instance 	Yes		No			Yes(if declared Yes (if declared in an 
+		members of enclosing 						in an instance	instance method)
+		class?								method)
 		
-		Can access local 		N/A				N/A						Yes (if final 		Yes (if final 
-		variables of 													or effectively 		or effectively final)
-		enclosing method?												final)					
+		Can access local 	N/A		N/A			Yes (if final 	Yes (if final 
+		variables of 							or effectively 	or effectively final)
+		enclosing method?						final)					
 																			
 			
 	 */
